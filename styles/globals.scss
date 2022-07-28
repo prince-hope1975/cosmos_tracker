@@ -1,0 +1,43 @@
+:root{
+  --bg-clr:hsla(240, 6%, 10%, 1);
+  --secondary-clr: hsl(233,53%,6%);
+  --shadow-secondary: hsl(204, 29%, 30%);
+  --btn-active:hsl(205,64%,26%);
+    font-size: 10px;
+
+  @media (min-width: 400px) {
+    font-size: 12px;
+  } ;
+   @media (min-width: 550px) {
+    font-size: 15px;
+  }
+
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background: var(--bg-clr);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
