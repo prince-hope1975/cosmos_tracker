@@ -72,6 +72,7 @@
   .btn {
     padding: 0.5rem 0.9rem;
     text-transform: uppercase;
+    font-weight: bold;
     // margin: 0.5rem;
     color: white;
     width: max-content;
@@ -84,6 +85,7 @@
   min-height: calc(100vh - 5rem);
   max-width: clamp(400px, 90%, 1100px);
   margin: auto;
+  padding: 5px;
   .buttonSection {
     display: flex;
     margin: 1.5rem 0;
@@ -103,7 +105,7 @@
     span {
       display: flex;
       width: 40%;
-      gap: 3px;
+      gap: 5px;
       overflow-y: auto;
       &::-webkit-scrollbar {
         width: 0px;
@@ -122,10 +124,10 @@
       border: 1px solid var(--shadow-secondary);
       .display_section {
         & > div {
-           border-right: 1px solid var(--shadow-secondary);
-           border-bottom: 1px solid var(--shadow-secondary);
-           align-items: center;
-         }
+          border-right: 1px solid var(--shadow-secondary);
+          border-bottom: 1px solid var(--shadow-secondary);
+          align-items: center;
+        }
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         > div {
@@ -140,11 +142,12 @@
           grid-template-columns: repeat(3, 1fr);
           gap: 5px;
           .percent {
-            font-size: 0.65rem;
+            font-size: var(--percent);
             color: green;
           }
           h3 {
-            font-size: 0.9rem;
+            font-weight: 400;
+            font-size: 1rem;
             margin: 0;
             padding: 0;
           }
@@ -164,11 +167,12 @@
           }
         }
         .percent {
-          font-size: 0.65rem;
+          font-size: var(--percent);
           color: green;
         }
         h3 {
-          font-size: 0.9rem;
+          font-size: 1rem;
+          font-weight: 400;
           margin: 0;
           padding: 0;
         }
@@ -197,6 +201,7 @@
           display: flex;
           align-items: center;
           gap: 2.5px;
+          font-size: 1.1rem;
           svg {
             color: var(--shadow-secondary);
           }

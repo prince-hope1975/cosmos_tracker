@@ -63,7 +63,7 @@ const Home: NextPage = () => {
                     style={{
                       fontSize: ".9rem",
                       textTransform: "lowercase",
-                      padding: ".3rem",
+                      padding: ".5rem",
                     }}
                     className={`${styles.btn} ${styles.active}`}
                   >
@@ -136,7 +136,6 @@ const DisplaySection = ({
         <Percent text={sale_percent} />
       </div>
       <div>
-        {" "}
         <h3>{average}</h3>
         <Percent text={average_percent} />
       </div>
@@ -145,7 +144,6 @@ const DisplaySection = ({
         <h3>{volume}</h3>
         <Percent text={volume_percent} />
       </div>
-      {/* <div></div> */}
     </motion.div>
   );
 };
