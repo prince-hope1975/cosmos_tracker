@@ -2,7 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
-import { motion } from "framer-motion";
+import Layout from "../components/Layout";
+import { motion, Variants, MotionProps } from "framer-motion";
 import { PropsWithChildren, useState } from "react";
 import { useRouter } from "next/router";
 import { FiChevronDown } from "react-icons/fi";
@@ -14,19 +15,49 @@ const Home: NextPage = () => {
   const handleClick = (text: string) => {
     setActiveText(text);
   };
+
+  const listVariants: Variants = {
+    hidden: { scale: 0 },
+    visible: {
+      scale: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.15,
+        type: "tween",
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, x: 100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+    },
+  };
   return (
-    <div className={styles.container}>
+    <Layout className={styles.container}>
       <Head>
         <title>Cosmos</title>
         <meta name="description" content="Cosmos " />
         <link rel="icon" href="/images/logo.jpeg" />
       </Head>
-      <nav className={styles.header}>
+      <motion.nav
+        className={styles.header}
+        initial={{ y: -10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delayChildren: 1, type: "tween" }}
+      >
         <motion.div className={styles.logo}>
           <Image src={"/images/logo.jpeg"} width={100} height={100} />
         </motion.div>
-        <span>Atlas Tool</span>
-        <motion.ul layout animate={{}}>
+        <motion.span>Atlas Tool</motion.span>
+        <motion.ul
+          initial={{ y: 4, opacity: 0 }}
+          layout
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1 }}
+        >
           <li>
             Community <FiChevronDown />
           </li>
@@ -34,7 +65,7 @@ const Home: NextPage = () => {
             Doc <FiChevronDown />
           </li>
         </motion.ul>
-      </nav>
+      </motion.nav>
       <motion.main className={styles.main}>
         <motion.section className={styles.gridSection}>
           <motion.div className={styles.buttonSection}>
@@ -73,21 +104,32 @@ const Home: NextPage = () => {
               })}
             </span>
           </motion.div>
-          <motion.div className={styles.display}>
-            <div className={styles.titles}>
+          <motion.div
+            className={styles.display}
+            variants={listVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div className={styles.titles}>
               {titles.map((title) => {
                 return <Selctor key={title} text={title} />;
               })}
-            </div>
+            </motion.div>
             {data.map((props) => {
-              return <DisplaySection key={props.name} {...props} />;
+              return (
+                <DisplaySection
+                  variants={itemVariants}
+                  key={props.name}
+                  {...props}
+                />
+              );
             })}
           </motion.div>
         </motion.section>
       </motion.main>
 
       {/* <footer className={styles.footer}></footer> */}
-    </div>
+    </Layout>
   );
 };
 
@@ -110,9 +152,17 @@ const DisplaySection = ({
   supply,
   volume,
   volume_percent,
-}: data) => {
+  variants,
+  initial,
+  animate,
+}: data & MotionProps) => {
   return (
-    <motion.div className={styles.display_section}>
+    <motion.div
+      initial={initial}
+      animate={animate}
+      className={styles.display_section}
+      variants={variants}
+    >
       <div className={styles.first}>
         <span>
           <div className={styles.img_container}>
